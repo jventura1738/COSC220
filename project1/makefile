@@ -8,7 +8,7 @@ CPP = shape.cpp rect.cpp main.cpp center.cpp square.cpp circle.cpp shapeTryRecen
 
 all: $(OBJS)
 	$(CC) -c $(CPP)
-	$(CC) -o main $(OBJS) 
+	$(CC) -o main $(OBJS)
 
 # clean up object files and main executable: 'make clean'
 
