@@ -1,5 +1,7 @@
 #include <iostream>
 
+// template linked list, header TODO
+
 template <class T>
 class List {
 private:
