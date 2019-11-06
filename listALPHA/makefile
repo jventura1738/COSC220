@@ -11,8 +11,5 @@ main.o: main.cpp
 memcheck:
 	valgrind --leak-check=yes ./main
 
-memcheckOP:
-	-fsanitize=address -fno-omit-frame-pointer ./main
-
 clean:
 	rm main *.o
