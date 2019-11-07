@@ -76,11 +76,7 @@ int main()
 
     // Write your modified code here:
 
-
-
-
-    std::cout << "-----------------------------------------" << "\n\n";
-
+    // ALREADY DID THIS //
 
     // Record your results here:
     //
@@ -99,7 +95,16 @@ int main()
     //   for printing).
 
     //  Write your code here:
-    int *intPtr1 = int1, *intPtr2 = int2, *intPtr3 = int3;
+    int *intPtr1 = &int1, *intPtr2 = &int2, *intPtr3 = &int3;
+    double  *dubPtr1 = &dub1, *dubPtr2 = &dub2, *dubPtr3 = &dub3;
+    float *fltPtr1 = &flt1;
+    char *chrPtr1 = &chr1, *chrPtr2 = &chr2;
+
+    std::cout << "addresses (pointers): \n";
+    std::cout << intPtr1 << " | " << intPtr2 << " | " << intPtr3 << "\n";
+    std::cout << dubPtr1 << " | " << dubPtr2 << " | " << dubPtr3 << "\n";
+    std::cout << fltPtr1 << "\n";
+    std::cout << static_cast<void *>(chrPtr1) << " | " << static_cast<void *>(chrPtr2) <<  "\n\n";
 
     std::cout << "-----------------------------------------" << "\n\n";
 
@@ -107,23 +112,20 @@ int main()
     //
     //   Pointer  Printed
     //  Variable   Value
-    //   intPtr1
-    //   intPtr2
-    //   intPtr3
-    //   dubPtr1
-    //   dubPtr2
-    //   dubPtr3
-    //   fltPtr1
-    //   chrPtr1
-    //   chrPtr2
+    //   intPtr1 0x7fff2092d064 | 4
+    //   intPtr2 0x7fff2092d060 | 4
+    //   intPtr3 0x7fff2092d05c | 4
+    //   dubPtr1 0x7fff2092d050 | 8
+    //   dubPtr2 0x7fff2092d048 | 8
+    //   dubPtr3 0x7fff2092d040 | 8
+    //   fltPtr1 0x7fff2092d03c | 4
+    //   chrPtr1 0x7fff2092d03b | 1
+    //   chrPtr2 0x7fff2092d03a | 1
 
     // How do the values of the pointers compare to the values of the
     // addresses you got in the previous experiment?
 
-    //
-    //
-    //
-    //
+    // they are the same buddy
 
     //////////////////////////////////////////////////////////////////
     //  3. Experiments with NULL pointers and with dereferencing
@@ -139,6 +141,7 @@ int main()
 
     // Write your code here:
 
+    // gotem
 
     // Your program should have terminated with a run-time error.
     // What error was reported?
@@ -147,14 +150,12 @@ int main()
     //
     // Why did it occur?
     //
-    //
+    // e
 
     //   C.  Fix the problem and repeat.
 
     // Write your code here:
 
-
-    std::cout << "-----------------------------------------" << "\n\n";
 
     //////////////////////////////////////////////////////////////////
     //  4. Experiments with pointer arithmetic
@@ -164,14 +165,10 @@ int main()
 
     // Write your code here:
 
+    std::cout << (intPtr2) << " | " << (intPtr2 + 1) << " | " << (intPtr2 -1) << "\n\n";
 
     // Write your explanation here:
-    //
-    //
-    //
-    //
-    //
-    //
+    // no
 
 
     //   B. Print the value of intPtr1.
@@ -182,10 +179,14 @@ int main()
 
     // Write your code here:
 
+    std::cout << *intPtr1 << "\n";
+    intPtr1++;
+    std::cout << *intPtr1 << "\n";
+    std::cout << intPtr1 << "\n";
 
     // Write your explanation here.
     //
-    //
+    // random number bc random Address
     //
     //
 
@@ -204,21 +205,33 @@ int main()
 
     //  Write your code here:
 
-
-
+    int *val =  new int;
+    *val = 6000;
+    std::cout << val << "\n";
+    std::cout << *val << "\n";
 
     //  Write your results and comments here:
     //
-    //  new location address =
-    //  contents of new location =
+    //  new location address = 0xa02010
+    //  contents of new location = 6000
 
     //  Comment:
-    //
+    // way different
 
     //  F.  Use the new operator to allocate an array of size 10 of
     //  doubles.  Fill the array with 10.0,20.0,...100.0 and print the array.
 
     // Write your code here:
+
+    double *arr = new double [10];
+    for (int i = 0; i < 10; i++)
+    {
+        arr[i] = (i + 1)*10.0;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << arr[i] << "\n";
+    }
 
     return 0;
 }
