@@ -7,3 +7,7 @@ This program can plot and draw the following shapes: circle, rectangle and squar
 ## Project 2: Sorting Algorithm Analysis and Demo
 
 This project involved an in-depth analysis including actual time trials on 5 different sorting algorithms: bubble, selection, insertion, double selection, exchange sort.  I also did the same for Merge and Heap sort for fun.
+
+## Project 3: Doubly Linked List Student Database
+
+This project was meant to be a group project but I decided to work alone.
