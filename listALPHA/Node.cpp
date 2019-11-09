@@ -1,3 +1,5 @@
+// Justin Ventura
+// COSC220-003
 #include "Node.h"
 #include <iostream>
 

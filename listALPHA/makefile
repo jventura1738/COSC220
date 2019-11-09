@@ -1,4 +1,6 @@
-# makefile for datastruct dir main
+# Justin Ventura
+# COSC220-003
+# makefile for listALPHA dir main
 GC = g++ -c -std=c++11 -g
 GO = g++ -g -o
 

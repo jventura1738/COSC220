@@ -1,3 +1,5 @@
+// Justin Ventura
+// COSC220-003
 #ifndef LIST_H
 #define LIST_H
 #include "Node.h"

@@ -1,4 +1,5 @@
-#ifndef NODE_H
+// Justin Ventura
+// COSC220-003#ifndef NODE_H
 #define NODE_H
 
 template <class T>
