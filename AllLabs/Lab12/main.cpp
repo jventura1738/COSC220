@@ -1,12 +1,14 @@
 // Justin Ventura
 // COSC220-003
 #include "List.h"
+#include "d_List.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 
 int main()
 {
+	/*
 	// (1)
 	std::cout << "(1) and (2), list array.\n";
 	List<int> list;
@@ -76,6 +78,21 @@ int main()
 	std::cout << "\n\nCurrent list elements: \n";
 	list.display();
 	std::cout << "\n";
+	*/
+
+	dList<int> list;
+
+	for (int i = 1; i < 6; i++)
+	{
+		list.append(i);
+	}
+	list.prepend(0);
+	list.display();
+
+	dNode<int> temp = list.search(2);
+	list.putBefore(&temp, 0);
+
+	list.display();
 
     return 0;
 }
