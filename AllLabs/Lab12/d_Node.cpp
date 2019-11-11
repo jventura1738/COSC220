@@ -1,3 +1,5 @@
+// Justin Ventura
+// COSC220-003 Lab12
 #include <iostream>
 #include "d_Node.h"
 

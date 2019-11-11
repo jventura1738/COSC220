@@ -1,3 +1,5 @@
+// Justin Ventura
+// COSC220-003 Lab12
 #include "d_Node.h"
 #ifndef D_LIST_H
 #define D_LIST_H

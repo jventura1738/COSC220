@@ -1,5 +1,5 @@
 // Justin Ventura
-// COSC220-003
+// COSC220-003 Lab12
 #include "List.h"
 #include "d_List.h"
 #include <iostream>

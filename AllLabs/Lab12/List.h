@@ -8,13 +8,6 @@ template <class T>
 class List {
 private:
     Node<T> *head;
-    
-    // prepend, append [DONE]
-    // ordered insert [DONE]
-    // display list [DONE]
-    // list count [DONE]
-    // search val [DONE]
-    // delete node [DONE]
 
 public:
 	// Constructor

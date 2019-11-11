@@ -1,8 +1,10 @@
+// Justin Ventura
+// COSC220-003 Lab12
 #ifndef D_NODE_H
 #define D_NODE_H
 
 template <class T>
-class dNode 
+class dNode
 {
 public:
 	// data member
