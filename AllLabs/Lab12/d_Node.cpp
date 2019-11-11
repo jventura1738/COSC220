@@ -31,7 +31,7 @@ dNode<T>::dNode(dNode<T>* obj)
 template <class T>
 dNode<T>::~dNode()
 {
-	std::cout << "--dNode destroyed: " << this->data;
+	//std::cout << "--dNode destroyed: " << this->data << "\n";
 }
 
 // Assignment Operator Overload

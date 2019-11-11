@@ -1,7 +1,7 @@
 // Justin Ventura
 // COSC220-003
 #include "List.h"
-//#include "d_List.h"
+#include "d_List.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -79,18 +79,29 @@ int main()
 	list.display();
 	std::cout << "\n";
 	*/
+	// ====================================================
 	dList<int> list;
 
-	for (int i = 1; i < 6; i++)
+	std::cout << "Enter 10 integers (0-99)\n";
+	for (int i = 1; i <= 10; i++)
 	{
-		list.append(i);
+		int temp;
+		do
+		{
+			std::cin >> temp;
+			if (temp < 0 || temp > 99)
+				std::cout << "Re-enter.\n";
+		} while(temp < 0 || temp > 99);
+		list.append(temp);
 	}
-	list.prepend(0);
-	list.display();
 
-	dNode<int> temp = list.search(2);
-	list.putBefore(&temp, 0);
-
+	dNode<int> * curr = list.getHead();
+	while (curr)
+	{
+		if (curr->data % 2 != 0)
+			list.removeNode(curr);
+		curr = curr->next;
+	}
 	list.display();
     return 0;
 }

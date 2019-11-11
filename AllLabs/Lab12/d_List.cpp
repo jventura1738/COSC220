@@ -31,6 +31,13 @@ template <class T>
 dList<T>::~dList()
 {
 	std::cout << "destroying list...\n";
+	dNode<T> *curr = head;
+	while (curr->next)
+	{
+		curr = curr->next;
+		delete curr->prev;
+	}
+	delete curr;
 }
 
 // Insertion methods
@@ -69,83 +76,51 @@ void dList<T>::prepend(T val)
 }
 
 template <typename T>
-void dList<T>::putAfter(dNode<T> * targ, T val)
-{
-	dNode<T> *newNode = new dNode<T>(val);
-	newNode->prev = targ;
-	newNode->next = targ->next;
-	targ->next = newNode;
-	if (!newNode->next)
-		tail = newNode;
-}
-
-template <typename T>
 void dList<T>::putBefore(dNode<T> * targ, T val)
 {
 	dNode<T> *newNode = new dNode<T>(val);
 	newNode->next = targ;
 	newNode->prev = targ->prev;
+	targ->prev->next = newNode;
 	targ->prev = newNode;
 	if (!newNode->prev)
 		head = newNode;
-	std::cout << newNode->next->data << " " << newNode->prev->data << "\n";
 }
 
-/*
+// Removal method
 template <typename T>
-void dList<T>::insert(T val)
+void dList<T>::removeNode(dNode<T> * targ)
 {
-	dNode<T> *newNode = new dNode<T>(val);
-	if (!head)
+	if (head == tail)
 	{
-		std::cout << "--so, no head?\n";
-		head = newNode;
-		tail = newNode;
+		delete head;
+		delete tail;
+	}
+	else if (targ == head)
+	{
+		head = head->next;
+		delete head->prev;
+	}
+	else if (targ == tail)
+	{
+		std::cout << "big brain\n";
+		tail = tail->prev;
+		delete tail->next;
+		tail->next = nullptr;
 	}
 	else
 	{
-		dNode<T> *curr = head;
-
-		while (curr && curr->data < val)
-			curr = curr->next;
-
-		1 2 4
-		c
-		3 (val)
-
-		dNode<T> *newNode = new dNode<T>(val);
-		if (!curr->prev)
-		{
-			head = newNode;
-			newNode->next = curr;
-		}
-		else
-		{
-
-		}
-
-		newNode->next = curr;
-		std::cout << "wack1\n";
-		newNode->prev = curr->prev;
-		std::cout << "wack2\n";
-		curr->prev = newNode;
-		std::cout << "wack3\n";
-
-		if (!newNode->prev)
-		{
-			std::cout << "--new head\n";
-			head = newNode;
-		}
-		else if (!newNode->next)
-		{
-			std::cout << "--new tail\n";
-			tail = newNode;
-		}
+		targ->prev->next = targ->next;
+		targ->next->prev = targ->prev;
+		delete targ;
 	}
 }
-*/
 
-// Removal methods
+template <typename T>
+dNode<T> * dList<T>::getHead()
+{
+	return this->head;
+}
 
 // Search method
 template <typename T>
@@ -160,7 +135,7 @@ dNode<T> * dList<T>::search(T val)
 		{
 			curr = curr->next;
 		}
-		// returns nullptr if not found	
+		// returns nullptr if not found
 		return curr;
 	}
 }
