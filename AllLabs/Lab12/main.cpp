@@ -1,7 +1,7 @@
 // Justin Ventura
 // COSC220-003
 #include "List.h"
-#include "d_List.h"
+//#include "d_List.h"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -79,7 +79,6 @@ int main()
 	list.display();
 	std::cout << "\n";
 	*/
-
 	dList<int> list;
 
 	for (int i = 1; i < 6; i++)
@@ -93,6 +92,5 @@ int main()
 	list.putBefore(&temp, 0);
 
 	list.display();
-
     return 0;
 }
