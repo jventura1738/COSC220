@@ -1,3 +1,6 @@
+// Justin Ventura (COSC220-003)
+// Project 3 (modified 11/12/19)
+// File: Student.cpp (Justin Ventura)
 #include "Student.h"
 #include <iostream>
 #include <iomanip>
