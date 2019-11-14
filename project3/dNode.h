@@ -18,10 +18,10 @@ public:
 	// ---UTILITY FUNCTIONS---
 
     // Default Constructor
-	dNode() : next(nullptr), prev(nullptr) {}
+	dNode() : next(this), prev(this) {}
 
     // Constructor
-	dNode(T val) : data(val), next(nullptr), prev(nullptr) {}
+	dNode(T &val) : data(val), next(this), prev(this) {}
 
     // Copy Constructor
 	dNode(dNode<T>* obj);

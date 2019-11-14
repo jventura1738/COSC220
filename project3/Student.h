@@ -68,7 +68,10 @@ public:
 	friend std::ostream& operator<<(std::ostream& ostr, const Student& obj);
 
 	// Overloaded >> operator
-	friend std::istream& operator>> (std::istream& istr, Student& obj);
+	friend void operator>> (std::istream& istr, Student& obj);
+
+	// Overload == operator
+	friend bool operator==(const Student& lhs, const Student& rhs);
 };
 
 #endif

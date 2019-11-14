@@ -5,12 +5,12 @@
 #include "dNode.h"
 
 // Copy Constructor
-template <typename T>
+template <class T>
 dNode<T>::dNode(dNode<T>* obj)
 {
-    this->data = obj.data;
     this->next = obj->next;
     this->prev = obj->prev;
+    this->data = obj->data;
 }
 
 // Destructor
@@ -22,9 +22,9 @@ dNode<T>::~dNode()
 
 // Overloaded Assignment Operator
 template <typename T>
-dNode dNode<T>::operator=(dNode<T>* obj)
+dNode<T> dNode<T>::operator=(dNode<T>* obj)
 {
-    this->data = obj.data;
+    this->data = obj->data;
     this->next = obj->next;
     this->prev = obj->prev;
 }

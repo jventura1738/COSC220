@@ -3,6 +3,7 @@
 // File: dList.h (Justin Ventura)
 #ifndef DLIST_H
 #define DLIST_H
+#include "dNode.h"
 
 template <class T>
 class dList
@@ -15,6 +16,9 @@ private:
     // List Count Size
     int listSize;
 
+    // Hidden Insert Method
+    dNode<T> * putBefore(dNode<T> *curr, T& val);
+
 public:
 
     // Default Constructor
@@ -23,22 +27,34 @@ public:
     // Copy Constructor
     dList(const dList<T> &obj);
 
+    ~dList();
+
     // Overloaded Assignment Operator
     void operator=(const dList<T> &obj);
 
-    // Append Node
-    void append(T val);
+    // Prepend Node (After Header)
+    void prepend(T &val);
+
+    // Append Node (Before Header)
+    void append(T &val);
+
+    // Remove Node
+    void removeNode(dNode<T> *node);
 
     // Get Header
-    dNode<T> getHeader()
+    dNode<T> * getHeader()
     { return this->header; }
+
+    // Check for Empty List
+    bool isEmpty()
+    { return (listSize == 0) ? true : false; }
 
     // Display List
     void printOrder();
 
     // Diplay List (Reverse)
     void printRev();
-}
+};
 
 #include "dList.cpp"
 
