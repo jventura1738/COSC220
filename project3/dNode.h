@@ -3,7 +3,7 @@
 // File: dNode.h (Justin Ventura)
 #ifndef DNODE_H
 #define DNODE_H
-
+ 
 template <class T>
 class dNode
 {
