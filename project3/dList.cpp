@@ -9,7 +9,7 @@
 template <typename T>
 dList<T>::dList() : listSize(0)
 {
-    std::cout << "header created.\n";
+    std::cout << "header created. CONS\n";
     this->header = new dNode<T>;
     if (!header)
         std::cout << "--FATAL ERROR: memory lack [header alloc]\n";

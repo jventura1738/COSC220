@@ -4,14 +4,20 @@
 #include "dList.h"
 #include "Student.h"
 #include <fstream>
+#include <stdlib.h>
 
 // Welcome Screen Method
-void welcome();
+void welcomeSDB();
+
+// GET CHOICE (recieves input as for int)
+// Returns input integer
+int getChoice();
 
 // Temporary Format for Student Names.
-// Pass by value to not modify the actual student.
+// Pass by reference. To be undone with revert.
 void qualifyEntry(Student & student);
 
+// Reverts the Qualify Function.
 void revertEntry(Student & student);
 
 // Clear database.txt.
@@ -24,4 +30,3 @@ void updateDatabase(Student &student);
 // Extract Database data.
 // List should be empty.
 void extractData(dList<Student> & list);
-

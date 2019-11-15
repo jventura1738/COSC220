@@ -50,6 +50,10 @@ public:
 
     // TODO: Name 
 
+    // Return the size of List
+    int size()
+    { return listSize; }
+
     // Check for Empty List
     bool isEmpty()
     { return (listSize == 0) ? true : false; }

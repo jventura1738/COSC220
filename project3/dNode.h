@@ -21,7 +21,8 @@ public:
 	dNode() : next(this), prev(this) {}
 
     // Constructor
-	dNode(T &val) : data(val), next(this), prev(this) {}
+	dNode(T &val) : next(this), prev(this) 
+	{ this->data = val; }
 
     // Copy Constructor
 	dNode(dNode<T>* obj);
