@@ -15,7 +15,7 @@ void qualifyEntry(Student & student);
 void revertEntry(Student & student);
 
 // Clear database.txt.
-void clearDatabase();
+void clearDatabase(); 
 
 // Add student details to a database.
 // Pass by reference.
