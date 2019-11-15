@@ -64,7 +64,7 @@ void operator>> (std::istream& istr, Student& obj)
 	std::cout << "Enter student year [integer]: ";
 	do
 	{
-		std::cin >> obj.ID;
+		std::cin >> obj.Year;
 		if (obj.Year > 10)
 			std::cout << "Incorrect Year. Re-enter: ";
 	} while (obj.Year > 10);

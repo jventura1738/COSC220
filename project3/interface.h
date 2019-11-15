@@ -9,24 +9,27 @@
 // Welcome Screen Method
 void welcomeSDB();
 
+// Justin Interface
+void dispInterface();
+
 // GET CHOICE (recieves input as for int)
 // Returns input integer
 int getChoice();
 
 // Temporary Format for Student Names.
 // Pass by reference. To be undone with revert.
-void qualifyEntry(Student & student);
+void qualifyEntry(Student * student);
 
 // Reverts the Qualify Function.
-void revertEntry(Student & student);
+void revertEntry(Student * student);
 
 // Clear database.txt.
 void clearDatabase(); 
 
 // Add student details to a database.
 // Pass by reference.
-void updateDatabase(Student &student);
+void updateDatabase(Student * student);
 
 // Extract Database data.
 // List should be empty.
-void extractData(dList<Student> & list);
+void extractData(dList<Student> * list);

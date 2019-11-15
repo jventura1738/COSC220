@@ -50,7 +50,7 @@ void dList<T>::operator=(const dList<T> &obj)
 }
 
 template <typename T>
-dNode<T> * dList<T>::putBefore(dNode<T> *curr, T& val)
+dNode<T> * dList<T>::putBefore(dNode<T> *curr, T * val)
 {
     dNode<T> *newNode = new dNode<T>(val);
     if (!newNode)
@@ -68,14 +68,14 @@ dNode<T> * dList<T>::putBefore(dNode<T> *curr, T& val)
 }
 
 template <typename T>
-void dList<T>::prepend(T &val)
+void dList<T>::prepend(T *val)
 {
     putBefore(header->next, val);
     listSize++;
 }
 
 template <typename T>
-void dList<T>::append(T &val)
+void dList<T>::append(T *val)
 {
     putBefore(header, val);
     listSize++;

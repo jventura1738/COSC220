@@ -17,7 +17,7 @@ private:
     int listSize;
 
     // Hidden Insert Method
-    dNode<T> * putBefore(dNode<T> *curr, T& val);
+    dNode<T> * putBefore(dNode<T> *curr, T * val);
 
 public:
 
@@ -33,10 +33,10 @@ public:
     void operator=(const dList<T> &obj);
 
     // Prepend Node (After Header)
-    void prepend(T &val);
+    void prepend(T *val);
 
     // Append Node (Before Header)
-    void append(T &val);
+    void append(T *val);
 
     // Remove Node
     void removeNode(dNode<T> *node);
