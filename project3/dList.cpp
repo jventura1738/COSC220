@@ -3,6 +3,7 @@
 // File: dList.cpp (Justin Ventura)
 
 #include "dList.h"
+#include <iostream>
 
 // Default Constructor
 template <typename T>
@@ -17,8 +18,8 @@ dList<T>::dList() : listSize(0)
 template <typename T>
 dList<T>::dList(const dList<T> &obj)
 {
-    dNode<T> *curr = obj->header;
-    while (curr->next != obj->header)
+    dNode<T> *curr = obj.header;
+    while (curr->next != obj.header)
     {
         this->append(curr->data);
         curr = curr->next;
@@ -40,8 +41,8 @@ dList<T>::~dList()
 template <typename T>
 void dList<T>::operator=(const dList<T> &obj)
 {
-    dNode<T> *curr = obj->header;
-    while (curr->next != obj->header)
+    dNode<T> *curr = obj.header;
+    while (curr->next != obj.header)
     {
         this->append(curr->data);
         curr = curr->next;

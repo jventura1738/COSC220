@@ -2,7 +2,6 @@
 // Project 3 (modified 11/12/19)
 // File: Student.cpp (Justin Ventura)
 #include "Student.h"
-#include "inputValidate.h"
 #include <iostream>
 #include <iomanip>
 #include <string>

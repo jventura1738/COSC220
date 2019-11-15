@@ -12,8 +12,8 @@ gc = g++ -c -std=c++11 # COMPILE
 go = g++ -o 		   # LINKING
 
 # Makes Main Executable File via Linking Object Files.
-main: main.o Student.o #inputValidate.o
-	$(go) main main.o Student.o #inputValidate.o
+main: main.o Student.o interface.o
+	$(go) main main.o Student.o interface.o
 
 # Creates Main Object File via Compilation.
 main.o: main.cpp Student.h
@@ -23,9 +23,9 @@ main.o: main.cpp Student.h
 Student.o: Student.h
 	$(gc) Student.cpp
 
-# Creates inputValidate Object File via Compilation.
-#inputValidate.o: inputValidate.cpp
-#	$(gc) inputValidate.cpp
+# Creates an Interface Object File.
+interface.o: interface.cpp
+	$(gc) interface.cpp
 
 # Command for Memory Checks
 memcheck:
