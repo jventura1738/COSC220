@@ -16,6 +16,10 @@ void dispInterface();
 // Returns input integer
 int getChoice();
 
+// CONFIRM RESET (prevents accidental deletion)
+// Returns bool
+bool confirmReset();
+
 // Temporary Format for Student Names.
 // Pass by reference. To be undone with revert.
 void qualifyEntry(Student * student);

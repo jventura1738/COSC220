@@ -55,22 +55,30 @@ int main ()
 		}
 		else if (choice == 6)
 		{
-			clearDatabase();
-			delete database;
-			database = new dList<Student>;
+			bool confirm = confirmReset();
+			if (confirm)
+			{
+				clearDatabase();
+				delete database;
+				database = new dList<Student>;
+				std::cout << "Database clear.";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+			}
+			else
+			{
+				std::cout << "Reset cancelled.";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+			}
 		}
 		else run_program = false;
 
 	} while (run_program);
 	
 	delete database;
-
-	//Student s1("Justin Ventura", 3071913, 2, 4.0);
-	//Student s2("Jacob Duncan", 3071914, 2, 4.0);
-	//database.prepend(s1);
-	//updateDatabase(s1);
-	//database.append(s2);
-	// updateDatabase(s2);
 
 	return 0;
 }

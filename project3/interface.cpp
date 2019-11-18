@@ -59,6 +59,24 @@ int getChoice()
     return choice;
 }
 
+bool confirmReset()
+{
+	int confirm;
+	std::cout << "(!!!) Reset Database? Enter -1 to confirm. (!!!)\n";
+	std::cin >> confirm;
+	while (!std::cin.good())
+    {
+        std::cin.clear();
+        std::cin.ignore(INT_MAX, '\n');
+        std::cout << "Invalid, re-enter ---> ";
+        std::cin >> confirm;
+    }
+    if (confirm == -1)
+    	return true;
+    else
+    	return false;
+}
+
 void qualifyEntry(Student * student)
 {
 	std::string temp = student->getName();
