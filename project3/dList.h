@@ -45,11 +45,6 @@ public:
     dNode<T> * getHeader()
     { return this->header; }
 
-    // Find Exact Node
-    //dNode<T> * findNode(T val);
-
-    // TODO: Name 
-
     // Return the size of List
     int size()
     { return listSize; }
@@ -62,7 +57,7 @@ public:
     void printOrder();
 
     // Diplay List (Reverse)
-    void printRev();
+    void printReverse();
 };
 
 #include "dList.cpp"

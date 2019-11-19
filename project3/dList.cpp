@@ -15,6 +15,7 @@ dList<T>::dList() : listSize(0)
         std::cout << "--FATAL ERROR: memory lack [header alloc]\n";
 }
 
+// Copy Constructor
 template <typename T>
 dList<T>::dList(const dList<T> &obj)
 {
@@ -26,6 +27,7 @@ dList<T>::dList(const dList<T> &obj)
     }
 }
 
+// Destructor
 template <typename T>
 dList<T>::~dList()
 {
@@ -38,6 +40,7 @@ dList<T>::~dList()
     delete header;
 }
 
+// Overloaded AO
 template <typename T>
 void dList<T>::operator=(const dList<T> &obj)
 {
@@ -49,6 +52,7 @@ void dList<T>::operator=(const dList<T> &obj)
     }
 }
 
+// [PRIVATE] Insert before given dNode
 template <typename T>
 dNode<T> * dList<T>::putBefore(dNode<T> *curr, T * val)
 {
@@ -67,6 +71,7 @@ dNode<T> * dList<T>::putBefore(dNode<T> *curr, T * val)
     return newNode;
 }
 
+// Prepend value to the front
 template <typename T>
 void dList<T>::prepend(T *val)
 {
@@ -74,6 +79,7 @@ void dList<T>::prepend(T *val)
     listSize++;
 }
 
+// Append value to the front
 template <typename T>
 void dList<T>::append(T *val)
 {
@@ -81,6 +87,7 @@ void dList<T>::append(T *val)
     listSize++;
 }
 
+// Remove a given node
 template <typename T>
 void dList<T>::removeNode(dNode<T> *node)
 {
@@ -88,12 +95,13 @@ void dList<T>::removeNode(dNode<T> *node)
     node->next->prev = node->prev;
 
     delete node;
+    listSize--;
 }
 
+// Print data in order
 template <typename T>
 void dList<T>::printOrder()
 {
-    std::cout << "        Student          |    ID    | year | GPA\n";
     dNode<T> *curr = header->next;
     while (curr != header)
     {
@@ -102,10 +110,10 @@ void dList<T>::printOrder()
     }
 }
 
+// Print data in reverse order
 template <typename T>
-void dList<T>::printRev()
+void dList<T>::printReverse()
 {
-    std::cout << "        Student          |    ID    | year | GPA\n";
     dNode<T> *curr = header->prev;
     while (curr!= header)
     {

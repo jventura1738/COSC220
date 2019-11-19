@@ -55,9 +55,9 @@ void operator>> (std::istream& istr, Student& obj)
 	do
 	{
 		std::cin >> obj.ID;
-		if (obj.ID > 999999999)
+		if (obj.ID > 99999999)
 			std::cout << "Incorrect ID length. Re-enter: ";
-	} while (obj.ID > 999999999);
+	} while (obj.ID > 99999999);
 	std::cout << "Entered ID: " << obj.ID << "\n";
 
 	// School Year obtained from user

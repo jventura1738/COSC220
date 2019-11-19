@@ -1,4 +1,4 @@
-;// Justin Ventura (COSC220-003)
+// Justin Ventura (COSC220-003)
 // Project 3 (modified 11/14/19)
 // File: interface.h (Justin Ventura)
 #include "dList.h"
@@ -6,18 +6,28 @@
 #include <fstream>
 #include <stdlib.h>
 
-// Welcome Screen Method
+// Welcome Screen Method.
 void welcomeSDB();
 
-// Justin Interface
+// Justin Interface.
 void dispInterface();
 
-// GET CHOICE (recieves input as for int)
-// Returns input integer
+// Search Student by Name.
+void searchByName(std::string key, dNode<Student> * header);
+
+// Search Student by ID.
+void searchByID(int key, dNode<Student> * header);
+
+// BINARY CHOICE (0 or 1).
+// Returns one of two options.
+bool binaryChoice();
+
+// GET CHOICE (recieves input as for int).
+// Returns input integer.
 int getChoice();
 
-// CONFIRM RESET (prevents accidental deletion)
-// Returns bool
+// CONFIRM RESET (prevents accidental deletion).
+// Returns bool.
 bool confirmReset();
 
 // Temporary Format for Student Names.
@@ -33,6 +43,10 @@ void clearDatabase();
 // Add student details to a database.
 // Pass by reference.
 void updateDatabase(Student * student);
+
+// Synchronize List and Database.
+// Use this whenever List order changes.
+void syncDatabase(dNode<Student> * header);
 
 // Extract Database data.
 // List should be empty.

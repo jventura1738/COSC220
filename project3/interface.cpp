@@ -33,14 +33,81 @@ void dispInterface()
 	std::cout << "==================================================\n";
 }
 
-// Get the user's input (Validated)
-int getChoice()
+// Search Student by Name.
+void searchByName(std::string key, dNode<Student> * header)
 {
-    int choice;
+	int matchCount = 0, i, j;
+	bool match = false;
+	std::cout << "        Student          |    ID    | year | GPA\n";
+	dNode<Student> * curr = header->next;
+	//std::cout << "first " << curr->data.getName()[i] << " - " << key[i] << "\n";
+	while (curr != header)
+	{
+		// TODO: FIX THE SEARCH FOR SECOND WORD
+		i = 0; // for DATABASE index
+		j = 0; // for KEY index
+		//std::cout << curr->data.getName()[i] << " - " << key[i] << "\n";
+
+		// Check for a match in the first word.
+		while (curr->data.getName()[i] == key[j])
+		{
+			//std::cout << curr->data.getName()[i] << " " << key[i] << " " << i << "\n"; 
+
+			// Skip increment if word ends.
+			if (curr->data.getName()[i + 1] == ' ')
+			{
+				if ((i + 1) == key.size())
+				{
+					match = true;
+					matchCount++;
+					break;
+				}
+				else
+				{
+					while (curr->data.getName()[i] == ' ')
+						i++;
+
+					j = 0;
+					continue;
+				}
+			}
+			j++;
+			i++;
+		}
+
+		// Print the match.
+		if (match)
+		{
+			std::cout << curr->data;
+			match = false;
+		}
+
+		curr = curr->next;
+	}
+	if (matchCount == 0)
+	{
+		std::cout << "NO MATCHES FOUND.\n";
+		return;
+	}
+	else
+		std::cout << "\nTotal matches found: " << matchCount << "\n";
+
+}
+
+// Search Student by ID.
+void searchByID(int key, dNode<Student> * header)
+{
+	std::cout << "        Student          |    ID    | year | GPA\n";
+}
+
+// Gets 0 or 1 for binary choices
+bool binaryChoice()
+{
+	int choice;
     std::cout << "---> ";
     std::cin >> choice;
 
-    while (choice > 7 || choice < 1)
+    while (!std::cin.good() || (choice > 1 || choice < 0))
     {
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -48,7 +115,21 @@ int getChoice()
         std::cin >> choice;
     }
 
-    while (!std::cin.good())
+    if (choice == 0)
+    	return false;
+    else 
+    	return true;
+
+}
+
+// Get the user's input (Validated)
+int getChoice()
+{
+    int choice;
+    std::cout << "---> ";
+    std::cin >> choice;
+
+    while (!std::cin.good() || (choice > 7 || choice < 1))
     {
         std::cin.clear();
         std::cin.ignore(INT_MAX, '\n');
@@ -99,10 +180,19 @@ void revertEntry(Student * student)
 	student->setName(temp);
 }
 
+// Clears the Database File.
+void clearDatabase()
+{
+	std::ifstream outfile;
+	outfile.open("database.txt", std::ofstream::out | std::ofstream::trunc);
+	outfile.close();
+}
+
 void updateDatabase(Student * student)
 {
 	qualifyEntry(student);
 
+	// Check database with ifstream
 	std::ifstream infile;
 	infile.open("database.txt");
 
@@ -114,6 +204,7 @@ void updateDatabase(Student * student)
 
   	infile.close();
 
+  	// Update database with ofstream
 	std::ofstream outfile;
 	outfile.open("database.txt", std::ios_base::app);
 
@@ -132,12 +223,17 @@ void updateDatabase(Student * student)
 	outfile.close();
 }
 
-// Clears the Database File.
-void clearDatabase()
+// Call whenever list strays from database
+void syncDatabase(dNode<Student> * header)
 {
-	std::ifstream outfile;
-	outfile.open("database.txt", std::ofstream::out | std::ofstream::trunc);
-	outfile.close();
+	// Clear database to refresh
+	clearDatabase();
+	dNode<Student> * curr = header->next;
+	while (curr != header)
+	{
+		updateDatabase(&curr->data);
+		curr = curr->next;
+	}
 }
 
 // Extract Student Data from Database
