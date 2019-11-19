@@ -1,7 +1,7 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: dNode.cpp (Justin Ventura)
- 
+#include <iostream>
 #include "dNode.h"
 
 // Copy Constructor
@@ -17,7 +17,7 @@ dNode<T>::dNode(dNode<T>* obj)
 template <typename T>
 dNode<T>::~dNode()
 {
-    // std::cout << "Node destroyed: " << this->data << "\n";
+    //std::cout << "Node destroyed: " << this->data << "\n";
 }
 
 // Overloaded Assignment Operator

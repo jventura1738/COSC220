@@ -7,7 +7,7 @@
 #include <string>
 
 // Implementation of Copy Constructor
-Student::Student(const Student& obj)
+Student::Student(Student & obj)
 {
 	std::cout << "Student Constructed (COPY).\n";
 	this->Name = obj.Name;
@@ -17,7 +17,7 @@ Student::Student(const Student& obj)
 }
 
 // Implementation of Overloaded operator=
-void Student::operator=(const Student& obj)
+void Student::operator=(Student& obj)
 {
 	std::cout << "Student Constructed (AO).\n";
 	this->Name = obj.Name;
@@ -32,7 +32,7 @@ std::ostream& operator<<(std::ostream& ostr, const Student& obj)
 	ostr << std::left << std::setw(25) << obj.Name << "| ";
 	ostr << std::left << std::setw(9) << obj.ID << "| ";
 	ostr << " " << std::left << std::setw(4) << obj.Year << "| ";
-	ostr << std::left << std::setw(3) << std::setprecision(2) 
+	ostr << std::left << std::setw(3) << std::setprecision(2)
 	     << std::fixed << obj.GPA << "\n";
 	return ostr;
 }
@@ -44,7 +44,7 @@ void operator>> (std::istream& istr, Student& obj)
 	std::cout << "Enter student name [25 char max]: ";
 	do
 	{
- 		getline(std::cin, obj.Name); 
+ 		getline(std::cin, obj.Name);
  		if (obj.Name.size() > 25 || obj.Name.size() < 1)
  			std::cout << "Incorrect name length. Re-enter: ";
 	} while (obj.Name.size() > 25 || obj.Name.size() < 1);

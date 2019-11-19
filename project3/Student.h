@@ -3,7 +3,7 @@
 // File: Student.h (Justin Ventura)
 #ifndef STUDENT_H
 #define STUDENT_H
-#include <iostream> 
+#include <iostream>
 
 class Student
 {
@@ -19,16 +19,16 @@ public:
 	// Constructor
 	Student(std::string n = "N/A", int id = 0, int y = 0, float gpa = 0.0):
 			Name(n), ID(id), Year(y), GPA(gpa)
-			{ std::cout << "Student Constructed.\n"; }
+	{ std::cout << "Student Constructed.\n"; }
 
 	// Destructor
 	~Student() { std::cout << "Student destroyed.\n"; }
 
 	// Copy Constructor
-	Student(const Student& obj);
+	Student(Student & obj);
 
 	// Overloaded Assignment Operator
-	void operator=(const Student& obj);
+	void operator=(Student& obj);
 
 	// -- METHODS FOR STUDENT CLASS --
 

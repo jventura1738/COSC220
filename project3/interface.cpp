@@ -12,7 +12,7 @@ void welcomeSDB()
 {
 	std::cout << std::string(50, '\n');
 	std::cout << "==================================================\n";
-	std::cout << "|         ♢ Justin's Student Database ♢          |\n";
+	std::cout << "|        💽 Justin's Student Database 💽         |\n";
 	std::cout << "|                                                |\n";
 	std::cout << "|  1) Add a Student                              |\n";
 	std::cout << "|  2) Remove a Student                           |\n";
@@ -29,7 +29,7 @@ void dispInterface()
 {
 	std::cout << std::string(50, '\n');
 	std::cout << "==================================================\n";
-	std::cout << "|         ♢ Justin's Student Database ♢          |\n";
+	std::cout << "|         💽 Justin's Student Database 💽        |\n";
 	std::cout << "==================================================\n";
 }
 
@@ -43,16 +43,11 @@ void searchByName(std::string key, dNode<Student> * header)
 	//std::cout << "first " << curr->data.getName()[i] << " - " << key[i] << "\n";
 	while (curr != header)
 	{
-		// TODO: FIX THE SEARCH FOR SECOND WORD
 		i = 0; // for DATABASE index
 		j = 0; // for KEY index
-		//std::cout << curr->data.getName()[i] << " - " << key[i] << "\n";
-
 		// Check for a match in the first word.
 		while (curr->data.getName()[i] == key[j])
 		{
-			//std::cout << curr->data.getName()[i] << " " << key[i] << " " << i << "\n"; 
-
 			// Skip increment if word ends.
 			if (curr->data.getName()[i + 1] == ' ')
 			{
@@ -70,6 +65,12 @@ void searchByName(std::string key, dNode<Student> * header)
 					j = 0;
 					continue;
 				}
+			}
+			else if ((i + 1) == key.size())
+			{
+				match = true;
+				matchCount++;
+				break;
 			}
 			j++;
 			i++;
@@ -90,14 +91,22 @@ void searchByName(std::string key, dNode<Student> * header)
 		return;
 	}
 	else
-		std::cout << "\nTotal matches found: " << matchCount << "\n";
+		std::cout << "Total matches found: " << matchCount << "\n";
 
 }
 
 // Search Student by ID.
 void searchByID(int key, dNode<Student> * header)
 {
+	int matchCount = 0, i, j;
+	bool match = false;
 	std::cout << "        Student          |    ID    | year | GPA\n";
+	dNode<Student> * curr = header->next;
+
+	// while (curr != header)
+	// {
+	// 	if ()
+	// }
 }
 
 // Gets 0 or 1 for binary choices
@@ -110,14 +119,14 @@ bool binaryChoice()
     while (!std::cin.good() || (choice > 1 || choice < 0))
     {
         std::cin.clear();
-        std::cin.ignore(INT_MAX, '\n');
+        std::cin.ignore(INT32_MAX, '\n');
         std::cout << "Invalid, re-enter ---> ";
         std::cin >> choice;
     }
 
     if (choice == 0)
     	return false;
-    else 
+    else
     	return true;
 
 }
@@ -132,7 +141,7 @@ int getChoice()
     while (!std::cin.good() || (choice > 7 || choice < 1))
     {
         std::cin.clear();
-        std::cin.ignore(INT_MAX, '\n');
+        std::cin.ignore(INT32_MAX, '\n');
         std::cout << "Invalid, re-enter ---> ";
         std::cin >> choice;
     }
@@ -148,7 +157,7 @@ bool confirmReset()
 	while (!std::cin.good())
     {
         std::cin.clear();
-        std::cin.ignore(INT_MAX, '\n');
+        std::cin.ignore(INT32_MAX, '\n');
         std::cout << "Invalid, re-enter ---> ";
         std::cin >> confirm;
     }
@@ -158,26 +167,26 @@ bool confirmReset()
     	return false;
 }
 
-void qualifyEntry(Student * student)
+void qualifyEntry(Student & student)
 {
-	std::string temp = student->getName();
+	std::string temp = student.getName();
 	for (int i = 0; i < temp.size(); i++)
 	{
 		if (temp[i] == ' ')
 			temp[i] = '_';
 	}
-	student->setName(temp);
+	student.setName(temp);
 }
 
-void revertEntry(Student * student)
+void revertEntry(Student & student)
 {
-	std::string temp = student->getName();
+	std::string temp = student.getName();
 	for (int i = 0; i < temp.size(); i++)
 	{
 		if (temp[i] == '_')
 			temp[i] = ' ';
 	}
-	student->setName(temp);
+	student.setName(temp);
 }
 
 // Clears the Database File.
@@ -188,7 +197,7 @@ void clearDatabase()
 	outfile.close();
 }
 
-void updateDatabase(Student * student)
+void updateDatabase(Student & student)
 {
 	qualifyEntry(student);
 
@@ -198,9 +207,9 @@ void updateDatabase(Student * student)
 
 	// If database not empty, newline.
 	bool flag = false;
-	infile.seekg(0, std::ios::end);  
+	infile.seekg(0, std::ios::end);
 	if (infile.tellg() != 0)
-		flag = true; 
+		flag = true;
 
   	infile.close();
 
@@ -208,14 +217,14 @@ void updateDatabase(Student * student)
 	std::ofstream outfile;
 	outfile.open("database.txt", std::ios_base::app);
 
-	std::string tempName = student->getName();
-	int tempID = student->getID();
-	int tempYear = student->getYear();
-	float tempGPA = student->getGPA();
+	std::string tempName = student.getName();
+	int tempID = student.getID();
+	int tempYear = student.getYear();
+	float tempGPA = student.getGPA();
 
 	if (flag) outfile << "\n";
 
-	outfile << tempID << " " << tempName << " " 
+	outfile << tempID << " " << tempName << " "
 			<< tempYear << " " << tempGPA;
 
 	revertEntry(student);
@@ -231,7 +240,7 @@ void syncDatabase(dNode<Student> * header)
 	dNode<Student> * curr = header->next;
 	while (curr != header)
 	{
-		updateDatabase(&curr->data);
+		updateDatabase(curr->data);
 		curr = curr->next;
 	}
 }
@@ -245,8 +254,8 @@ void extractData(dList<Student> * list)
 	infile.open("database.txt");
 
 	// If database empty, return.
-	infile.seekg(0, std::ios::end);  
-	if (infile.tellg() == 0)   
+	infile.seekg(0, std::ios::end);
+	if (infile.tellg() == 0)
   		return;
 
 	// If list is not empty give a warning.
@@ -265,14 +274,13 @@ void extractData(dList<Student> * list)
 	while (!infile.eof())
 	{
 		infile >> tempID >> tempName >> tempYear >> tempGPA;
-		Student *s = new Student(tempName, tempID, tempYear, tempGPA);
-		
+		Student s(tempName, tempID, tempYear, tempGPA);
+
 		// Revert to regular string form and append.
 		revertEntry(s);
 		list->append(s);
 	}
 
 	// Close the file stream.
-	infile.close(); 
+	infile.close();
 }
-

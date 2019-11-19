@@ -54,9 +54,10 @@ void dList<T>::operator=(const dList<T> &obj)
 
 // [PRIVATE] Insert before given dNode
 template <typename T>
-dNode<T> * dList<T>::putBefore(dNode<T> *curr, T * val)
+dNode<T> * dList<T>::putBefore(dNode<T> *curr, T & val)
 {
-    dNode<T> *newNode = new dNode<T>(val);
+    dNode<T> *newNode = new dNode<T>;
+    newNode->data = val;
     if (!newNode)
     {
         std::cout << "--ERROR: memory lack [dNode]\n";
@@ -73,7 +74,7 @@ dNode<T> * dList<T>::putBefore(dNode<T> *curr, T * val)
 
 // Prepend value to the front
 template <typename T>
-void dList<T>::prepend(T *val)
+void dList<T>::prepend(T &val)
 {
     putBefore(header->next, val);
     listSize++;
@@ -81,7 +82,7 @@ void dList<T>::prepend(T *val)
 
 // Append value to the front
 template <typename T>
-void dList<T>::append(T *val)
+void dList<T>::append(T &val)
 {
     putBefore(header, val);
     listSize++;

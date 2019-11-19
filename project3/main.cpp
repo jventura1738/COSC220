@@ -4,6 +4,7 @@
 #include "interface.h"
 #include <iostream>
 #include <stdlib.h>
+#include <limits>
 
 int main ()
 {
@@ -20,9 +21,9 @@ int main ()
 		if (choice == 1)
 		{
 			dispInterface();
-			Student *s = new Student;
+			Student s;
 			std::cin.ignore();
-			std::cin >> *s;
+			std::cin >> s;
 			database->append(s);
 			updateDatabase(s);
 		}
@@ -121,7 +122,7 @@ int main ()
 		}
 
 	} while (run_program);
-	
+
 	delete database;
 
 	return 0;

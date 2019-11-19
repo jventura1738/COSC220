@@ -32,17 +32,17 @@ bool confirmReset();
 
 // Temporary Format for Student Names.
 // Pass by reference. To be undone with revert.
-void qualifyEntry(Student * student);
+void qualifyEntry(Student & student);
 
 // Reverts the Qualify Function.
-void revertEntry(Student * student);
+void revertEntry(Student & student);
 
 // Clear database.txt.
-void clearDatabase(); 
+void clearDatabase();
 
 // Add student details to a database.
 // Pass by reference.
-void updateDatabase(Student * student);
+void updateDatabase(Student & student);
 
 // Synchronize List and Database.
 // Use this whenever List order changes.

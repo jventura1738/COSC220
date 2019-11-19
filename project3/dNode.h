@@ -3,7 +3,7 @@
 // File: dNode.h (Justin Ventura)
 #ifndef DNODE_H
 #define DNODE_H
- 
+
 template <class T>
 class dNode
 {
@@ -21,7 +21,7 @@ public:
 	dNode() : next(this), prev(this) {}
 
     // Constructor
-	dNode(T * val) : data(*val), next(this), prev(this) {} 
+	dNode(T & val) : data(&val), next(this), prev(this) {} 
 
     // Copy Constructor
 	dNode(dNode<T>* obj);
