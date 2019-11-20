@@ -36,6 +36,12 @@ void dispInterface()
 // Search Student by Name.
 void searchByName(std::string key, dNode<Student> * header)
 {
+	if (header->next == header)
+	{
+		std::cout << "Database is Empty! Please re-check database.\n";
+		std::cout << "[Be sure to sync the database with data struct]\n";
+		return;
+	}
 	int matchCount = 0, i, j;
 	bool match = false;
 	std::cout << "        Student          |    ID    | year | GPA\n";
@@ -51,20 +57,22 @@ void searchByName(std::string key, dNode<Student> * header)
 			// Skip increment if word ends.
 			if (curr->data.getName()[i + 1] == ' ')
 			{
+				// if the whole word matches, this is student is a match
 				if ((i + 1) == key.size())
 				{
 					match = true;
 					matchCount++;
 					break;
 				}
-				else
-				{
-					while (curr->data.getName()[i] == ' ')
-						i++;
-
-					j = 0;
-					continue;
-				}
+				// ADD A MULTI-WORD SEARCH IF TIME ALOTS FOR SO
+				// else
+				// {
+				// 	while (curr->data.getName()[i] == ' ')
+				// 		i++;
+				//
+				// 	j = 0;
+				// 	continue;
+				// }
 			}
 			else if ((i + 1) == key.size())
 			{
@@ -87,26 +95,43 @@ void searchByName(std::string key, dNode<Student> * header)
 	}
 	if (matchCount == 0)
 	{
-		std::cout << "NO MATCHES FOUND.\n";
+		std::cout << "\nNO MATCHES FOUND.\n";
 		return;
 	}
 	else
-		std::cout << "Total matches found: " << matchCount << "\n";
+		std::cout << "\nTotal matches found: " << matchCount << "\n";
 
 }
 
 // Search Student by ID.
 void searchByID(int key, dNode<Student> * header)
 {
-	int matchCount = 0, i, j;
-	bool match = false;
+	if (header->next == header)
+	{
+		std::cout << "Database is Empty! Please re-check database.\n";
+		std::cout << "[Be sure to sync the database with data struct]\n";
+		return;
+	}
+	int matchCount = 0;
 	std::cout << "        Student          |    ID    | year | GPA\n";
 	dNode<Student> * curr = header->next;
 
-	// while (curr != header)
-	// {
-	// 	if ()
-	// }
+	while (curr != header)
+	{
+		if (curr->data.getID() == key)
+		{
+			matchCount++;
+			std::cout << curr->data;
+		}
+		curr = curr->next;
+	}
+	if (matchCount == 0)
+	{
+		std::cout << "\nNO MATCHES FOUND.\n";
+		return;
+	}
+	else
+		std::cout << "\nTotal matches found: " << matchCount << "\n";
 }
 
 // Gets 0 or 1 for binary choices
@@ -153,6 +178,7 @@ bool confirmReset()
 {
 	int confirm;
 	std::cout << "(!!!) Reset Database? Enter -1 to confirm. (!!!)\n";
+	std::cout << "[Enter another integer to cancel]\n";
 	std::cin >> confirm;
 	while (!std::cin.good())
     {
@@ -283,4 +309,123 @@ void extractData(dList<Student> * list)
 
 	// Close the file stream.
 	infile.close();
+}
+
+// Use only if unchained.
+void reverseList(dNode<Student> * header)
+{
+    dNode<Student> * temp = nullptr;
+    dNode<Student> * curr = header;
+
+    while (curr)
+    {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+
+    if(!temp)
+        header = temp->prev;
+}
+
+//===================DATABASE MERGE SORT=======================
+
+// Split for Mergesort
+dNode<Student> *split(dNode<Student> *head)
+{
+    dNode<Student> *fast = head,*slow = head;
+    while (fast->next && fast->next->next)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    dNode<Student> *temp = slow->next;
+    slow->next = nullptr;
+    return temp;
+}
+
+// Merge ID
+dNode<Student> *mergeID(dNode<Student> *first, dNode<Student> *second)
+{
+    // Check for empty lists
+    if (!first)
+        return second;
+
+    if (!second)
+        return first;
+
+    // Pick the smaller value
+    if (first->data.getID() < second->data.getID())
+    {
+        first->next = mergeID(first->next,second);
+        first->next->prev = first;
+        first->prev = nullptr;
+        return first;
+    }
+    else
+    {
+        second->next = mergeID(first,second->next);
+        second->next->prev = second;
+        second->prev = nullptr;
+        return second;
+    }
+}
+
+// Mergesort ID
+dNode<Student> *mergeSortID(dNode<Student> *head)
+{
+    if (!head || !head->next)
+        return head;
+
+    dNode<Student> *second = split(head);
+
+    // Recur for left and right halves
+    head = mergeSortID(head);
+    second = mergeSortID(second);
+
+    // Merge the two sorted halves
+    return mergeID(head,second);
+}
+
+// Merge two Linked lists. [Name]
+dNode<Student> * mergeName(dNode<Student> *first, dNode<Student> *second)
+{
+	// Check for empty lists
+    if (!first)
+        return second;
+
+    if (!second)
+        return first;
+
+    // Select Alphabetically Larger
+    if (first->data.getName() <= second->data.getName())
+    {
+        first->next = mergeName(first->next, second);
+        first->next->prev = first;
+        first->prev = nullptr;
+        return first;
+    }
+    else
+    {
+        second->next = mergeName(first, second->next);
+        second->next->prev = second;
+        second->prev = nullptr;
+        return second;
+    }
+}
+
+// Merge Sort Doubly Linked List by Name.
+dNode<Student> * mergeSortName(dNode<Student> *head)
+{
+    if (!head || !head->next)
+        return head;
+    dNode<Student> *second = split(head);
+
+    // Recur for left and right halves
+    head = mergeSortName(head);
+    second = mergeSortName(second);
+
+    // Merge the two sorted halves
+    return mergeName(head,second);
 }

@@ -27,15 +27,68 @@ int main ()
 			database->append(s);
 			updateDatabase(s);
 		}
-		// Remove a student.
+		// Remove a student. [FUNCTIONAL]
 		else if (choice == 2)
 		{
 			dispInterface();
-			std::cout << "TODO: rm student\n";
+			if (database->isEmpty())
+			{
+				std::cout << "Database is Empty! Please re-check database.\n";
+				std::cout << "[Be sure to sync the database with data struct]\n";
+				std::cout << "\n\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+				continue;
+			}
+			int IDremove;
+			bool attempt = true;
+			bool removed = false;
+			std::cout << "        Student          |    ID    | year | GPA\n";
+			database->printOrder();
+			std::cout << "==================================================\n";
+			while (attempt)
+			{
+				std::cout << "Enter exact ID of student to be removed: ";
+				std::cout << "---> ";
+				std::cin >> IDremove;
+				while (!std::cin.good())
+				{
+					std::cin.clear();
+			        std::cin.ignore(INT32_MAX, '\n');
+			        std::cout << "Invalid, re-enter ---> ";
+			        std::cin >> IDremove;
+				}
+				dNode<Student> *temp = database->getHeader();
+				dNode<Student> *curr = temp;
+
+				while (curr->next != temp)
+				{
+					if (curr->data.getID() == IDremove)
+					{
+						database->removeNode(curr);
+						std::cout << "Student with ID: " << IDremove << " removed.\n";
+						std::cout << "\n\nPress <Enter> to continue...";
+						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+						std::cin.get();
+						attempt = false;
+						removed = true;
+						syncDatabase(temp);
+						break;
+					}
+					curr = curr->next;
+				}
+				if (!removed)
+				{
+					std::cout << "Student not found.\n";
+					std::cout << "Try again? (1) yes (0) no: ";
+					attempt = binaryChoice();
+				}
+			}
 		}
 		// Print students in order/reverse.
 		else if (choice == 3) // [FUNCTIONAL]
 		{
+			dispInterface();
 			std::cout << "Print database in order or reverse?\n";
 			std::cout << "1 for order, 0 for reverse.\n";
 			bool order = binaryChoice();
@@ -53,6 +106,7 @@ int main ()
 			else
 			{
 				dispInterface();
+				//reverseList(database->getHeader());
 				std::cout << "        Student          |    ID    | year | GPA\n";
 				database->printReverse();
 				std::cout << "==================================================\n";
@@ -62,7 +116,7 @@ int main ()
 				std::cin.get();
 			}
 		}
-		// Search Student by ...
+		// Search Student by ... [FUNCTIONAL]
 		else if (choice == 4)
 		{
 			dispInterface();
@@ -78,6 +132,7 @@ int main ()
 				searchByName(nameKey, database->getHeader());
 				std::cout << "\nPress <Enter> to continue...";
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
 			}
 			else		// Search by ID
 			{
@@ -85,13 +140,60 @@ int main ()
 				std::cout << "Enter ID of student: ";
 				std::cin >> keyID;
 				dispInterface();
-				//searchByID(keyID, database->getHeader());
+				searchByID(keyID, database->getHeader());
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
 			}
 		}
+		// Sort Database by ...
 		else if (choice == 5)
 		{
 			dispInterface();
-			std::cout << "TODO: sort students.\n";
+			std::cout << "Sort database by (0) name (1) ID\n";
+			bool choice = binaryChoice();
+			database->unchain();
+			dNode<Student> *temp = database->getHeader();
+			if (choice)		// Sort by ID
+			{
+				// new
+				// unchain now removes header
+				// new
+				mergeSortID(temp);
+				dNode<Student> * curr = database->getHeader();
+				while (curr->prev)
+					curr = curr->prev;
+				database->setHeader(curr);
+				database->chain();
+				dispInterface();
+				std::cout << "======= Database successfully sorted by ID =======\n";
+				std::cout << "        Student          |    ID    | year | GPA  \n";
+				database->printOrder();
+				std::cout << "==================================================\n";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+			}
+			else			// Sort by Name
+			{
+				//temp = temp->next;
+				//temp->prev = nullptr;
+				mergeSortName(temp);
+				dNode<Student> * curr = database->getHeader();
+				while (curr->prev)
+					curr = curr->prev;
+				database->setHeader(curr);
+				database->chain();
+				dispInterface();
+				std::cout << "====== Database successfully sorted by Name ======\n";
+				std::cout << "        Student          |    ID    | year | GPA  \n";
+				database->printOrder();
+				std::cout << "==================================================\n";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+			}
+			syncDatabase(database->getHeader());
 		}
 		// Reset database.txt [FUNCTIONAL]
 		else if (choice == 6)

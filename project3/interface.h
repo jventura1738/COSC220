@@ -1,7 +1,10 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/14/19)
 // File: interface.h (Justin Ventura)
+// NOTE: This file contains all helper
+// and interface methods used in project
 #include "dList.h"
+#include "dNode.h"
 #include "Student.h"
 #include <fstream>
 #include <stdlib.h>
@@ -51,3 +54,21 @@ void syncDatabase(dNode<Student> * header);
 // Extract Database data.
 // List should be empty.
 void extractData(dList<Student> * list);
+
+// Reverse Doubly Linked List (UNCHAIN IT FIRST)
+void reverseList(dNode<Student> * header);
+
+// Splits doubly linked list into 2 half sizes.
+dNode<Student> * split(dNode<Student> *head);
+
+// Merge two Linked lists. [ID]
+dNode<Student> * mergeID(dNode<Student> *first, dNode<Student> *second);
+
+// Merge Sort Doubly Linked List by ID.
+dNode<Student> * mergeSortID(dNode<Student> *head);
+
+// Merge two Linked lists. [Name]
+dNode<Student> * mergeName(dNode<Student> *first, dNode<Student> *second);
+
+// Merge Sort Doubly Linked List by Name.
+dNode<Student> * mergeSortName(dNode<Student> *head);

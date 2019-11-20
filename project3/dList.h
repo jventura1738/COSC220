@@ -45,6 +45,9 @@ public:
     dNode<T> * getHeader()
     { return this->header; }
 
+    void setHeader(dNode<T> * head)
+    { this->header = head; }
+
     // Return the size of List
     int size()
     { return listSize; }
@@ -52,6 +55,12 @@ public:
     // Check for Empty List
     bool isEmpty()
     { return (listSize == 0) ? true : false; }
+
+    // Unchain the header [Remove Circularity].
+    void unchain();
+
+    // Rechain the header [Fixes Circularity].
+    void chain();
 
     // Display List
     void printOrder();

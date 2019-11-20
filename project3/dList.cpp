@@ -99,6 +99,64 @@ void dList<T>::removeNode(dNode<T> *node)
     listSize--;
 }
 
+// Unchain the header [Remove Circularity].
+template <typename T>
+void dList<T>::unchain()
+{
+    if (header->next == header)
+        std::cout << "\nHeader only btw\n";
+    // old
+    // header->prev->next = nullptr;
+    // header->prev = nullptr;
+    // old
+
+    // new
+    dNode<T> * temp = header;
+    header = header->next;
+    std::cout << "TEMP DATA: " << temp->data.getName() << "\n";
+    std::cout << "HEADER DATA: " << header->data.getName() << "\n";
+
+    temp->prev->next = nullptr; // back -> null
+    temp->prev = nullptr;       // old head -> null
+    temp->next = nullptr;       // old head -> null
+
+    header->prev = nullptr;
+
+    delete temp;
+    // new
+}
+
+// Rechain the header [Fixes Circularity].
+template <typename T>
+void dList<T>::chain()
+{
+    // old
+    // dNode<T> * curr = header;
+    //
+    // while (curr->next)
+    //     curr = curr->next;
+    //
+    // curr->next = header;
+    // header->prev = curr;
+    // old
+
+
+    // new
+    dNode<T> * newHeader = new dNode<T>;
+    dNode<T> * curr = header;
+
+    header->prev = newHeader;
+    newHeader->next = header;
+    header = newHeader;
+
+    while (curr->next)
+        curr = curr->next;
+
+    curr->next = header;
+    header->prev = curr;
+    // new
+}
+
 // Print data in order
 template <typename T>
 void dList<T>::printOrder()
