@@ -1,3 +1,8 @@
+// Justin Ventura (COSC220-003)
+// Project 3 (modified 11/20/19)
+// File: main.cpp (Justin Ventura)
+// NOTE: This file is for the main
+// executable for the database.
 #include "Student.h"
 #include "dList.h"
 #include "dNode.h"
@@ -59,9 +64,9 @@ int main ()
 			        std::cin >> IDremove;
 				}
 				dNode<Student> *temp = database->getHeader();
-				dNode<Student> *curr = temp;
+				dNode<Student> *curr = temp->next;
 
-				while (curr->next != temp)
+				while (curr != temp)
 				{
 					if (curr->data.getID() == IDremove)
 					{
@@ -120,6 +125,15 @@ int main ()
 		else if (choice == 4)
 		{
 			dispInterface();
+			if (database->getHeader()->next == database->getHeader())
+			{
+				std::cout << "Database is Empty! Please re-check database.\n";
+				std::cout << "[Be sure to sync the database with data struct]\n";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+				continue;
+			}
 			std::cout << "Search student by name (1) or ID (0)?\n";
 			bool choice = binaryChoice();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -149,6 +163,15 @@ int main ()
 		// Sort Database by ...
 		else if (choice == 5)
 		{
+			if (database->getHeader()->next == database->getHeader())
+			{
+				std::cout << "Database is Empty! Please re-check database.\n";
+				std::cout << "[Be sure to sync the database with data struct]\n";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+				continue;
+			}
 			dispInterface();
 			std::cout << "Sort database by (0) name (1) ID\n";
 			bool choice = binaryChoice();
@@ -198,6 +221,15 @@ int main ()
 		// Reset database.txt [FUNCTIONAL]
 		else if (choice == 6)
 		{
+			if (database->getHeader()->next == database->getHeader())
+			{
+				std::cout << "Database is Empty! Please re-check database.\n";
+				std::cout << "[Be sure to sync the database with data struct]\n";
+				std::cout << "\nPress <Enter> to continue...";
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+				continue;
+			}
 			bool confirm = confirmReset();
 			if (confirm)
 			{

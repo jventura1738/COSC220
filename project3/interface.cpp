@@ -36,14 +36,8 @@ void dispInterface()
 // Search Student by Name.
 void searchByName(std::string key, dNode<Student> * header)
 {
-	if (header->next == header)
-	{
-		std::cout << "Database is Empty! Please re-check database.\n";
-		std::cout << "[Be sure to sync the database with data struct]\n";
-		return;
-	}
 	int matchCount = 0, i, j;
-	bool match = false;
+	bool match = false, iterate = true;
 	std::cout << "        Student          |    ID    | year | GPA\n";
 	dNode<Student> * curr = header->next;
 	//std::cout << "first " << curr->data.getName()[i] << " - " << key[i] << "\n";
@@ -51,38 +45,42 @@ void searchByName(std::string key, dNode<Student> * header)
 	{
 		i = 0; // for DATABASE index
 		j = 0; // for KEY index
-		// Check for a match in the first word.
-		while (curr->data.getName()[i] == key[j])
-		{
-			// Skip increment if word ends.
-			if (curr->data.getName()[i + 1] == ' ')
+
+		// while (iterate)
+		// {
+		// 	if (i == 25)
+		// 		break;
+			// Check for a match in the first word.
+			while (curr->data.getName()[i] == key[j])
 			{
-				// if the whole word matches, this is student is a match
-				if ((i + 1) == key.size())
+				// Skip increment if word ends.
+				if (curr->data.getName()[i + 1] == ' ' && key[j] != ' ')
+				{
+					// if the whole word matches, this is student is a match
+					if ((i + 1) == key.size())
+					{
+						match = true;
+						matchCount++;
+						break;
+					}
+				}
+				else if ((i + 1) == key.size())
 				{
 					match = true;
 					matchCount++;
 					break;
 				}
-				// ADD A MULTI-WORD SEARCH IF TIME ALOTS FOR SO
-				// else
-				// {
-				// 	while (curr->data.getName()[i] == ' ')
-				// 		i++;
-				//
-				// 	j = 0;
-				// 	continue;
-				// }
+				j++;
+				i++;
 			}
-			else if ((i + 1) == key.size())
-			{
-				match = true;
-				matchCount++;
-				break;
-			}
-			j++;
-			i++;
-		}
+			// if (match)
+			// 	iterate = false;
+			// else
+			// {
+			// 	j = 0;
+			// 	i++;
+			// }
+		// }
 
 		// Print the match.
 		if (match)
@@ -106,12 +104,6 @@ void searchByName(std::string key, dNode<Student> * header)
 // Search Student by ID.
 void searchByID(int key, dNode<Student> * header)
 {
-	if (header->next == header)
-	{
-		std::cout << "Database is Empty! Please re-check database.\n";
-		std::cout << "[Be sure to sync the database with data struct]\n";
-		return;
-	}
 	int matchCount = 0;
 	std::cout << "        Student          |    ID    | year | GPA\n";
 	dNode<Student> * curr = header->next;
