@@ -1,6 +1,8 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/14/19)
+// Project 3 (modified 11/21/19)
 // File: interface.cpp (Justin Ventura)
+// All of the work for the interface is
+// in here.
 
 #include "interface.h"
 #include "Student.h"
@@ -79,6 +81,9 @@ void searchByName(std::string key, dNode<Student> * header)
 			j++;
 			counter++;
 		}
+
+		// this code was able to be fixed unlike my heart.
+		// 08/12/19 </3 @amy collins :(
 
 		// Print the match.
 		if (match)
@@ -389,7 +394,7 @@ dNode<Student> * mergeName(dNode<Student> *first, dNode<Student> *second)
         return first;
 
     // Select Alphabetically Larger
-    if (first->data.getName() <= second->data.getName())
+    if (lowercase(first->data.getName()) <= lowercase(second->data.getName()))
     {
         first->next = mergeName(first->next, second);
         first->next->prev = first;

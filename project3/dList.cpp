@@ -1,6 +1,8 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: dList.cpp (Justin Ventura)
+// Implementation for the Doubly
+// Linked List Class.
 
 #include "dList.h"
 #include <iostream>
@@ -9,7 +11,7 @@
 template <typename T>
 dList<T>::dList() : listSize(0)
 {
-    std::cout << "header created. CONS\n";
+    //std::cout << "header created. CONS\n";
     this->header = new dNode<T>;
     if (!header)
         std::cout << "--FATAL ERROR: memory lack [header alloc]\n";
@@ -31,7 +33,7 @@ dList<T>::dList(const dList<T> &obj)
 template <typename T>
 dList<T>::~dList()
 {
-    std::cout << "Destroying List.\n";
+    //std::cout << "Destroying List.\n";
     while (header->next != header)
         removeNode(header->next);
 
@@ -104,17 +106,12 @@ template <typename T>
 void dList<T>::unchain()
 {
     if (header->next == header)
-        std::cout << "\nHeader only btw\n";
-    // old
-    // header->prev->next = nullptr;
-    // header->prev = nullptr;
-    // old
+        std::cout << "\n--NOTE: Header only btw\n";
 
-    // new
     dNode<T> * temp = header;
     header = header->next;
-    std::cout << "TEMP DATA: " << temp->data.getName() << "\n";
-    std::cout << "HEADER DATA: " << header->data.getName() << "\n";
+    //std::cout << "TEMP DATA: " << temp->data.getName() << "\n";
+    //std::cout << "HEADER DATA: " << header->data.getName() << "\n";
 
     temp->prev->next = nullptr; // back -> null
     temp->prev = nullptr;       // old head -> null
@@ -123,25 +120,12 @@ void dList<T>::unchain()
     header->prev = nullptr;
 
     delete temp;
-    // new
 }
 
 // Rechain the header [Fixes Circularity].
 template <typename T>
 void dList<T>::chain()
 {
-    // old
-    // dNode<T> * curr = header;
-    //
-    // while (curr->next)
-    //     curr = curr->next;
-    //
-    // curr->next = header;
-    // header->prev = curr;
-    // old
-
-
-    // new
     dNode<T> * newHeader = new dNode<T>;
     dNode<T> * curr = header;
 
@@ -154,7 +138,6 @@ void dList<T>::chain()
 
     curr->next = header;
     header->prev = curr;
-    // new
 }
 
 // Print data in order

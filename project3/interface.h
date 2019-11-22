@@ -1,5 +1,5 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/14/19)
+// Project 3 (modified 11/21/19)
 // File: interface.h (Justin Ventura)
 // NOTE: This file contains all helper
 // and interface methods used in project
@@ -61,6 +61,8 @@ void extractData(dList<Student> * list);
 
 // Reverse Doubly Linked List (UNCHAIN IT FIRST)
 void reverseList(dNode<Student> * header);
+
+//===================DATABASE MERGE SORT=======================
 
 // Splits doubly linked list into 2 half sizes.
 dNode<Student> * split(dNode<Student> *head);

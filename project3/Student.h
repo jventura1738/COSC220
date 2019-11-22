@@ -1,6 +1,7 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: Student.h (Justin Ventura)
+// Student Class Header File.
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <iostream>
@@ -19,10 +20,12 @@ public:
 	// Constructor
 	Student(std::string n = "N/A", int id = 0, int y = 0, float gpa = 0.0):
 			Name(n), ID(id), Year(y), GPA(gpa)
-	{ std::cout << "Student Constructed.\n"; }
+	{ //std::cout << "Student Constructed.\n";
+	 }
 
 	// Destructor
-	~Student() { std::cout << "Student destroyed.\n"; }
+	~Student() { //std::cout << "Student destroyed.\n";
+ 				}
 
 	// Copy Constructor
 	Student(Student & obj);

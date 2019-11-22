@@ -1,6 +1,8 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: dNode.cpp (Justin Ventura)
+// Implementation for the Doubly
+// Linked List Node.
 #include <iostream>
 #include "dNode.h"
 

@@ -1,5 +1,5 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/20/19)
+// Project 3 (modified 11/21/19)
 // File: main.cpp (Justin Ventura)
 // NOTE: This file is for the main
 // executable for the database.
@@ -160,7 +160,7 @@ int main ()
 				std::cin.get();
 			}
 		}
-		// Sort Database by ...
+		// Sort Database by ... [FUNCTIONAL]
 		else if (choice == 5)
 		{
 			if (database->getHeader()->next == database->getHeader())
@@ -179,9 +179,6 @@ int main ()
 			dNode<Student> *temp = database->getHeader();
 			if (choice)		// Sort by ID
 			{
-				// new
-				// unchain now removes header
-				// new
 				mergeSortID(temp);
 				dNode<Student> * curr = database->getHeader();
 				while (curr->prev)

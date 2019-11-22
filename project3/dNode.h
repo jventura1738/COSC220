@@ -1,6 +1,7 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: dNode.h (Justin Ventura)
+// Class for Doubly Linked List Node.
 #ifndef DNODE_H
 #define DNODE_H
 
@@ -21,7 +22,7 @@ public:
 	dNode() : next(this), prev(this) {}
 
     // Constructor
-	dNode(T & val) : data(&val), next(this), prev(this) {} 
+	dNode(T & val) : data(&val), next(this), prev(this) {}
 
     // Copy Constructor
 	dNode(dNode<T>* obj);

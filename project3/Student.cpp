@@ -1,6 +1,7 @@
 // Justin Ventura (COSC220-003)
 // Project 3 (modified 11/12/19)
 // File: Student.cpp (Justin Ventura)
+// Student Class Implementation File.
 #include "Student.h"
 #include <iostream>
 #include <iomanip>
@@ -9,7 +10,7 @@
 // Implementation of Copy Constructor
 Student::Student(Student & obj)
 {
-	std::cout << "Student Constructed (COPY).\n";
+	//std::cout << "Student Constructed (COPY).\n";
 	this->Name = obj.Name;
 	this->ID = obj.ID;
 	this->Year = obj.Year;
@@ -19,7 +20,7 @@ Student::Student(Student & obj)
 // Implementation of Overloaded operator=
 void Student::operator=(Student& obj)
 {
-	std::cout << "Student Constructed (AO).\n";
+	//std::cout << "Student Constructed (AO).\n";
 	this->Name = obj.Name;
 	this->ID = obj.ID;
 	this->Year = obj.Year;
