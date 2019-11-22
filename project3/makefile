@@ -1,6 +1,6 @@
 # MAKEFILE FOR PROJECT 3: STUDENT DATABASE.
 # COSC220-003 Dr. Enyue Lu (Justin Ventura)
-# Created by Justin Ventura, on 11/21/19.
+# Created by Justin Ventura, on 11/22/19.
 
 # COMMANDS: 'make' for main.exe; ./main.exe to run.
 #           'make all' does same as above command.

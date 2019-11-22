@@ -2,6 +2,7 @@
 // Project 3 (modified 11/12/19)
 // File: dNode.h (Justin Ventura)
 // Class for Doubly Linked List Node.
+// Created: 11/12/19.
 #ifndef DNODE_H
 #define DNODE_H
 

@@ -1,8 +1,9 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/21/19)
+// Project 3 (modified 11/22/19)
 // File: interface.h (Justin Ventura)
 // NOTE: This file contains all helper
 // and interface methods used in project
+// Created: 11/13/19.
 #include "dList.h"
 #include "dNode.h"
 #include "Student.h"

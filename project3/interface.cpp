@@ -9,11 +9,11 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
-#include<bits/stdc++.h>
+//#include <bits/stdc++.h>
 
 void welcomeSDB()
 {
-	std::cout << std::string(50, '\n');
+	std::cout << std::string(55, '\n');
 	std::cout << "==================================================\n";
 	std::cout << "|        💽 Justin's Student Database 💽         |\n";
 	std::cout << "|                                                |\n";

@@ -1,7 +1,8 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/12/19)
+// Project 3 (modified 11/21/19)
 // File: dList.h (Justin Ventura)
 // *SPECIAL: extra methods.
+// Created: 11/12/19.
 #ifndef DLIST_H
 #define DLIST_H
 #include "dNode.h"

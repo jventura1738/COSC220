@@ -2,6 +2,7 @@
 // Project 3 (modified 11/12/19)
 // File: Student.h (Justin Ventura)
 // Student Class Header File.
+// Created: 11/12/19.
 #ifndef STUDENT_H
 #define STUDENT_H
 #include <iostream>

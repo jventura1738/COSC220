@@ -1,8 +1,9 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/21/19)
+// Project 3 (modified 11/22/19)
 // File: main.cpp (Justin Ventura)
 // NOTE: This file is for the main
 // executable for the database.
+// Created: 11/13/19.
 #include "Student.h"
 #include "dList.h"
 #include "dNode.h"

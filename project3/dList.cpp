@@ -1,8 +1,9 @@
 // Justin Ventura (COSC220-003)
-// Project 3 (modified 11/12/19)
+// Project 3 (modified 11/21/19)
 // File: dList.cpp (Justin Ventura)
 // Implementation for the Doubly
 // Linked List Class.
+// Created: 11/12/19.
 
 #include "dList.h"
 #include <iostream>
