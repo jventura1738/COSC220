@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include<bits/stdc++.h>
 
 void welcomeSDB()
 {
@@ -33,6 +34,13 @@ void dispInterface()
 	std::cout << "==================================================\n";
 }
 
+// Convert string case to be all lower.
+std::string lowercase(std::string s)
+{
+	std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+	return s;
+}
+
 // Search Student by Name.
 void searchByName(std::string key, dNode<Student> * header)
 {
@@ -40,65 +48,55 @@ void searchByName(std::string key, dNode<Student> * header)
 	bool match = false, iterate = true;
 	std::cout << "        Student          |    ID    | year | GPA\n";
 	dNode<Student> * curr = header->next;
-	//std::cout << "first " << curr->data.getName()[i] << " - " << key[i] << "\n";
+
 	while (curr != header)
 	{
 		i = 0; // for DATABASE index
 		j = 0; // for KEY index
+		match = false;
+		int counter = 0;
 
-		// while (iterate)
-		// {
-		// 	if (i == 25)
-		// 		break;
-			// Check for a match in the first word.
-			while (curr->data.getName()[i] == key[j])
+		key = lowercase(key);
+		std::string dataname = lowercase(curr->data.getName());
+
+		// Loop through to check for a match.
+		while (i < curr->data.getName().size())
+		{
+			if (dataname[i] == key[j])
 			{
-				// Skip increment if word ends.
-				if (curr->data.getName()[i + 1] == ' ' && key[j] != ' ')
-				{
-					// if the whole word matches, this is student is a match
-					if ((i + 1) == key.size())
-					{
-						match = true;
-						matchCount++;
-						break;
-					}
-				}
-				else if ((i + 1) == key.size())
-				{
-					match = true;
-					matchCount++;
-					break;
-				}
-				j++;
-				i++;
+				match = true;
 			}
-			// if (match)
-			// 	iterate = false;
-			// else
-			// {
-			// 	j = 0;
-			// 	i++;
-			// }
-		// }
+			else
+			{
+				match = false;
+				j = 0;
+			}
+			if (match && j + 1 == key.size())
+				break;
+			if (match && j < key.size())
+				match = false;
+			i++;
+			j++;
+			counter++;
+		}
 
 		// Print the match.
 		if (match)
 		{
+			matchCount++;
 			std::cout << curr->data;
 			match = false;
 		}
 
 		curr = curr->next;
 	}
+
 	if (matchCount == 0)
-	{
 		std::cout << "\nNO MATCHES FOUND.\n";
-		return;
-	}
 	else
 		std::cout << "\nTotal matches found: " << matchCount << "\n";
 
+	std::cout << "Searched for: " << key << "\n";
 }
 
 // Search Student by ID.

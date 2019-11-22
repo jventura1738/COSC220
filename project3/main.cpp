@@ -72,7 +72,7 @@ int main ()
 					{
 						database->removeNode(curr);
 						std::cout << "Student with ID: " << IDremove << " removed.\n";
-						std::cout << "\n\nPress <Enter> to continue...";
+						std::cout << "\nPress <Enter> to continue...";
 						std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 						std::cin.get();
 						attempt = false;

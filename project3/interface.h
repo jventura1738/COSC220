@@ -8,12 +8,16 @@
 #include "Student.h"
 #include <fstream>
 #include <stdlib.h>
+#include <string>
 
 // Welcome Screen Method.
 void welcomeSDB();
 
 // Justin Interface.
 void dispInterface();
+
+// Convert string case to be all lower.
+std::string lowercase(std::string s);
 
 // Search Student by Name.
 void searchByName(std::string key, dNode<Student> * header);
