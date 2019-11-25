@@ -10,4 +10,4 @@ This project involved an in-depth analysis including actual time trials on 5 dif
 
 ## Project 3: Doubly Linked List Student Database
 
-This project was meant to be a group project but I decided to work alone.
+This project was meant to be a group project but I decided to work alone.  This project consisted of a doubly linked list used to store data in a .txt file database.  The functionality includes: adding & removing a student, displaying the database, searching for a student by ID or name (autofills incomplete names), sort the list by ID or name (merge sort), and reset the database.  The interface is also very user-friendly and hard to break.
