@@ -1,5 +1,7 @@
 # COSC220
 
+This is my repository for COSC220 - Datastructures & Algorithms.
+
 ## Project 1: Shape Plot and Draw
 
 This program can plot and draw the following shapes: circle, rectangle and square.  The plot is drawn on a 20x10 grid as that was all that was asked for.  The project itself was just to check if the shape fits the grid, the actual drawing in the terminal was created by me for fun.
