@@ -9,6 +9,5 @@ Instructions on how to run this application are located in the makefile.
 - Add or Remove a Student.
 - Display the Database in normal/reverse order.
 - Search Student by ID or Name.
-- Modify a Student.
 - Sort Students by ID or Name (merge sort).
 - Reset the database.
