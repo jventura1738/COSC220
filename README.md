@@ -1,4 +1,4 @@
-# COSC220 : COMPUTER SCIENCE II (DATASTRUCTURES & ALGORITHMS)
+# COSC220 : COMPUTER SCIENCE II
 
 This is my repository for COSC220 - Datastructures & Algorithms.
 
