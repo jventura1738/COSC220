@@ -18,11 +18,34 @@ struct BSTnode *newNode(int val)
 // do inorder traversal of BST
 void inorder(struct BSTnode *root)
 {
+    if (!root) return;
     if (root->left)
         inorder(root->left);
     std::cout << root->data << "\n";
     if (root->right)
         inorder(root->right);
+}
+
+// do preorder traversal of BST
+void preorder(struct BSTnode *root)
+{
+    if (!root) return;
+    if (root->left)
+        preorder(root->left);
+    std::cout << root->data << "\n";
+    if (root->right)
+        preorder(root->right);
+}
+
+// do postorder traversal of BST
+void postorder(struct BSTnode *root)
+{
+    if (!root) return;
+    if (root->left)
+        postorder(root->left);
+    std::cout << root->data << "\n";
+    if (root->right)
+        postorder(root->right);
 }
 
 // A utility function to insert a new node with given key in BST
@@ -52,8 +75,10 @@ int main ()
     insert(root, 60);
     insert(root, 80);
 
-    // print inoder traversal of the BST
+    // print inorder traversal of the BST
     inorder(root);
+
+
 
     return 0;
 }
