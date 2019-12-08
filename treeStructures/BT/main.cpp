@@ -1,7 +1,6 @@
 #include <iostream>
 #include "tnode.h"
 #include <queue>
-// FIX QUEUE
 
 // do inorder traversal of BT
 void inorder(tnode *root)
@@ -95,18 +94,59 @@ tnode* insert(tnode* root, int key)
     return root;
 }
 
-void deleteTree(tnode * root)
+// count leaf nodes for BT given root
+int countleaf(tnode* root)
 {
     if (!root)
+        return 0;
+    if (!root->left && !root->right)
+        return 1;
+    else
     {
-        std::cout << "Tree does not exist.\n";
-        return;
+        return (countleaf(root->left) +
+                countleaf(root->right));
     }
-    if (root->left)
-        deleteTree(root->left);
-    if (root->right)
-        deleteTree(root->right);
+}
+
+// get depth of BT
+int depth(tnode* root)
+{
+    int left, right, total;
+    if (!root)
+        return -1;
+    else
+    {
+        left = depth(root->left);
+        right = depth(root->right);
+        total = 1 + ((left > right) ? left : right);
+    }
+    return total;
+}
+
+// return a pointer to a copy of a tree
+tnode * copy(tnode * root)
+{
+    if (!root)
+        return nullptr;
+
+    return new tnode(root->value, copy(root->left), copy(root->right));
+}
+
+// delete a subtree
+void deleteTree(tnode * root)
+{
+    if (!root) return;
+
+    deleteTree(root->left);
+    deleteTree(root->right);
     delete root;
+}
+
+// put root of tree to delete the whole tree
+void clearTree(tnode * root)
+{
+    deleteTree(root);
+    root = nullptr;
 }
 
 int main ()
@@ -130,6 +170,30 @@ int main ()
     postorder(root);
     std::cout << "\n\n";
     levelorder(root);
+    std::cout << "\n\n";
+
+    std::cout << "leaf nodes: " << countleaf(root) << "\n";
+    std::cout << "depth: " << depth(root) << "\n";
+
+    tnode *newroot = nullptr;
+    std::cout << "copying.\n";
+    newroot = copy(root);
+
+    preorder(root);
+    std::cout << "\n\n";
+    inorder(root);
+    std::cout << "\n\n";
+    postorder(root);
+    std::cout << "\n\n";
+    levelorder(root);
+    std::cout << "\n\n";
+
+    std::cout << "nodes: " << countleaf(root) << "\n";
+    std::cout << "depth: " << depth(root) << "\n";
+
+    std::cout << "deleting trees.\n";
+    clearTree(root);
+    clearTree(newroot);
 
     return 0;
 }
