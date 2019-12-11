@@ -1,4 +1,4 @@
-# COSC220 Project 2: Seven Sort Analysis
+# COSC220 Project 2: Seven Sorts Analysis
 
 Project by Justin Ventura.
 
