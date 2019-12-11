@@ -1,6 +1,6 @@
 # COSC220 Project 1: Shape Fitting & Draw
 
-Justin Ventura.
+Project by Justin Ventura.
 
 
 ## Specifications.
