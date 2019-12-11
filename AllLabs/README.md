@@ -1,6 +1,6 @@
 # All labs for COSC220-003 (Fall '19)
 
-- Justin Ventura
+-Justin Ventura
 
 Lab 1(not listed): Linux questions.
 
